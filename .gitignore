@@ -1,0 +1,12 @@
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environment
+env/
+venv/
+
+# (optional, if you don’t want to track it)
+instance/
+*.db
+.vscode/
