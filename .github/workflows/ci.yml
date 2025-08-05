@@ -25,6 +25,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run tests
+      working-directory: ./flaskintro
       env:
         FLASK_CONFIG: TestingConfig
         USE_SQLITE_FOR_TESTS: 1
