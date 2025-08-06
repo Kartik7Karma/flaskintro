@@ -1,4 +1,4 @@
-name: Flask CI (SQLite)
+name: Flask CI
 
 on:
   push:
@@ -7,28 +7,27 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ubuntu-latest
-    name: Run tests using SQLite (local)
 
     steps:
-      - name: ⬇️ Checkout code
-        uses: actions/checkout@v4
+    - name: ⬇️ Checkout code
+      uses: actions/checkout@v4
 
-      - name: 🐍 Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
 
-      - name: 📦 Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+    - name: 📦 Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
 
-      - name: 🧪 Run Pytest (SQLite)
-        env:
-          FLASK_CONFIG: TestingConfig
-          USE_SQLITE_FOR_TESTS: 1
-          PYTHONPATH: ${{ github.workspace }}
-        run: |
-          pytest test/ --cov=flaskintro --cov-report=term
+    - name: 🧪 Run tests with SQLite
+      env:
+        FLASK_CONFIG: TestingConfig
+        USE_SQLITE_FOR_TESTS: 1
+        PYTHONPATH: ${{ github.workspace }}
+      run: |
+        pytest test --cov=flaskintro --cov-report=term
