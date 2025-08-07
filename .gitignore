@@ -1,12 +1,37 @@
-# Ignore Python cache files
+# Byte-compiled / cache files
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
 
-# Ignore virtual environment
+# Virtual environments
 env/
 venv/
+ENV/
 
-# (optional, if you don’t want to track it)
+# VSCode settings
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Flask instance folder (secrets, configs, database)
 instance/
 *.db
-.vscode/
+*.sqlite3
+
+# Pytest cache
+.pytest_cache/
+
+# Gunicorn log files (if any)
+*.log
+
+# Environment files
+.env
+.env.*
+
+# Ignore compiled Python files in test folder too
+test/__pycache__/
+
+

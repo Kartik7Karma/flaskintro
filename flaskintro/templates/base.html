@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Master</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+
+<body>
+    <script>
+        // Automatically hide flash messages after 3 seconds
+        setTimeout(() => {
+            const flashMessages = document.querySelectorAll('.flash');
+            flashMessages.forEach(msg => msg.style.display = 'none');
+        }, 3000); // 3000 ms = 3 seconds
+    </script>
+
+    <div class="flash-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flashes">
+            {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+    </div>
+
+    {% block content %}
+    {% endblock %}
+</body>
+
+
+</html>
